@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Confirmation </title>
+</head>
+<body>
+    <h3>Student is confirmed</h3>
+
+    The Student is Confirmed:<span th:text="${student.firstName}+' '+${student.lastName}"></span>
+    <br><br>
+
+    Country: <span th:text="${student.country}"></span>  <!--"${student.country}" is student.getFirstName() i.e getter -->
+    <br><br>
+
+    Programming Languages: <span th:text="${student.favLang}"></span>
+
+    
+</body>
+</html>
