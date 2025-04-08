@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registation Form</title>
+</head>
+<body>
+
+    <h3>Student Registation Form</h3>
+    <form th:action="@{/processForm}" th:object="${student}"  th:method="POST"><!-- ${student} is model attribute name that we added in controller-->
+
+        First Name: <input type="text" th:field="*{firstName}"/>
+        <br><br>
+        Last Name: <input type="text" th:field="*{lastName}"/>
+        <br><br>
+        Country:
+        <!-- <select th:field="*{Country}">
+            <option th:value = "Spain">Spain</option>
+            <option th:value = "Brazil">Brazil</option>
+            <option th:value = "India">India</option>
+            <option th:value = "USA">USA</option>
+        </select> -->
+        <select th:field="*{country}">  <!--property name country in student class in model-->
+
+            <option th:each="tempCountry:${country}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
+            <!--  th:each iterates over the country list, binding each element to tempCountry. it is same name as model attribute name we gave in controller i.e m1.addAttribute(..)
+                    th:value sets the value attribute of each option.
+                    th:text sets the text content for each option-->
+        </select>
+        
+        <br><br>
+        Favourite Programming Lanuage:
+        <input type="radio" th:field="*{favLang}"
+                            th:each="tempLang:${lang}"  
+                            th:value="${tempLang}"
+                            th:text="${tempLang}"/>  
+        <br><br>
+
+        Favourite Technologies:
+        <input type="checkbox" th:field="*{tech}"
+                               th:each="tempTech:${technologies}"
+                               th:value="${tempTech}"
+                               th:text="${tempTech}"/>
+
+        <br><br>
+        <input type="submit" value="submit"/>
+
+    </form>
+
+    
+</body>
+</html>
