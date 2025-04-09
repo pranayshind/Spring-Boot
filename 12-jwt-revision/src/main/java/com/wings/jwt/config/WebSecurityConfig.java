@@ -19,8 +19,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig{
 
-//   @Autowired
-//   JwtAuthenticationFiler jwtAuthenticationFiler;
+  @Autowired
+  JwtAuthenticationFiler jwtAuthenticationFiler;
 
   @Autowired
   UserDetailsService userDetailsService;
@@ -33,8 +33,8 @@ public class WebSecurityConfig{
                                .requestMatchers("register","login").permitAll()
                                .anyRequest().authenticated()
                                )
-        .httpBasic(Customizer.withDefaults());
-        // .addFilterBefore(jwtAuthenticationFiler, UsernamePasswordAuthenticationFilter.class);
+        .httpBasic(Customizer.withDefaults())
+        .addFilterBefore(jwtAuthenticationFiler, UsernamePasswordAuthenticationFilter.class);
     
     return httpSecurity.build();
    }
